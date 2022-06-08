@@ -1,0 +1,30 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/home.css' %}">
+
+<script src="{% static '/home.js' %}"></script>
+<ol>
+    {% for iteam in title%}
+
+        <li>{{iteam}}
+            <form method="post" style="display:inline"
+            action="/deletetodo/{{iteam.id}}/"
+            >
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+    </li>
+    {% endfor %}
+
+</ol>
+
+
+<form method="post" action = "/addtodo/" name = "myform">
+    {% csrf_token %}
+
+    <input type="text" id = 'tit' name="title" placeholder="Add Todo List">
+    <p id = 'added'></p>
+    <button type="submit" onclick=myfun() id="btn">Add List</button>
+</form>
+
+
